@@ -16,3 +16,5 @@ production:
     projectId: dot-20240812152736
 hyperscaler: aws
 secrets: eso
+google:
+  projectId: dot-20240830114642

@@ -42,6 +42,8 @@ export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
 ### **Step 2: Create a Google Cloud Project**
 
+First, cd into the `cluster-setup` directory
+
 Next, let's create a new project. We will generate a unique project ID using the current date and time to ensure it’s globally unique:
 
 ```bash
@@ -60,11 +62,13 @@ Now, we proceed to create the project in Google Cloud:
 gcloud projects create $PROJECT_ID
 ```
 
-After the project is created, we'll get a URL to enable the Kubernetes API. Copy the URL and open it in your web browser:
+After the project is created, run the following command to get a URL to enable the Kubernetes API. 
 
 ```bash
 echo "https://console.cloud.google.com/marketplace/product/google/container.googleapis.com?project=$PROJECT_ID"
 ```
+
+Copy the URL and open it in your web browser. If you are prompted to enable billing follow the prompts.
 
 ### **Step 3: Enable the Kubernetes API**
 
