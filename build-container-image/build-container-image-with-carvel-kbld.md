@@ -20,8 +20,8 @@ kbld automatically assigns each image a unique tag during the build process. Thi
 
 Before we begin, we need to ensure a few prerequisites are met:
 
-- **Install kbld CLI**: We start by installing the kbld command-line interface.
-- **Install the pack CLI**: The pack CLI is necessary for building container images.
+- **[Install kbld CLI](https://carvel.dev/kbld/docs/v0.36.0/install/)**: We start by installing the kbld command-line interface.
+- **[Install the pack CLI](https://buildpacks.io/docs/tools/pack/#pack-cli)**: The pack CLI is necessary for building container images.
 - **Ensure Docker is Running**: Docker must be up and running, as kbld relies on it to build and manage images.
 
 ### **Implementation**
