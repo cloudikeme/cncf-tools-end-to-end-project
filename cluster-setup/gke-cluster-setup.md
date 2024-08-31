@@ -206,11 +206,15 @@ harbor
 notary
 cncf-demo-dev
 
-Each subdomain should point to the same IP address as your main domain. If you're using `nip.io`, skip this step.
+Each subdomain should point to the same IP address as your main domain. 
+
+If you're using `nip.io`, skip this step.
 
 ### **Step 13: Deploy and Configure cert-manager**
 
-To automate the process of issuing and renewing TLS certificates, we'll deploy cert-manager. Skip this step if you're using `nip.io`.
+To automate the process of issuing and renewing TLS certificates, we'll deploy cert-manager. 
+
+Skip this step if you're using `nip.io`.
 
 Add the `jetstack` Helm repository:
 
@@ -254,3 +258,4 @@ kubectl apply --filename cert-manager/issuer.yaml
 ```
 
 By following these steps, you've successfully set up a Kubernetes development environment with Traefik, configured DNS settings, and deployed cert-manager for automated certificate management.
+
