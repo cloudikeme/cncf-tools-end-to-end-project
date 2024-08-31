@@ -34,7 +34,7 @@ Before we proceed with configuring Kubernetes and setting up the GKE cluster, en
 - **jq**: A lightweight command-line JSON processor - [jq installation guide]().
 - **Helm**: A package manager for Kubernetes applications - [Helm installation guide]().
 
-You can install these tools according to your operating system's instructions
+You can install these tools according to your operating system's instructions.
 
 8. **Text Editor**: Have a text editor ready for editing configuration files if needed. Examples include VSCode, Sublime Text, or any command-line editor like Vim or Nano.
 
