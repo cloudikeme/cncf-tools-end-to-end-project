@@ -4,7 +4,7 @@
 
 Here's a step-by-step guide on how to create a Google Cloud project, enable the Kubernetes API, and create a GKE cluster:
 
-## **Prerequisites**
+### **Prerequisites**
 
 Before we proceed with configuring Kubernetes and setting up the GKE cluster, ensure that you have completed the following prerequisites:
 
@@ -40,7 +40,7 @@ You can install these tools according to your operating system's instructions.
 
 With these prerequisites in place, you're ready to proceed with configuring Kubernetes and setting up your GKE cluster.
 
-## **Step 1: Set Up the GKE gcloud Auth Plugin**
+### **Step 1: Set Up the GKE gcloud Auth Plugin**
 
 First, we need to enable the Google Kubernetes Engine (GKE) gcloud auth plugin by exporting the following environment variable:
 
@@ -48,7 +48,7 @@ First, we need to enable the Google Kubernetes Engine (GKE) gcloud auth plugin b
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 ```
 
-## **Step 2: Create a Google Cloud Project**
+### **Step 2: Create a Google Cloud Project**
 
 First, cd into the `cluster-setup` directory
 
@@ -80,14 +80,14 @@ echo "https://console.cloud.google.com/marketplace/product/google/container.goog
 
 Copy the URL and open it in your web browser. If you are prompted to enable billing follow the prompts.
 
-## **Step 3: Enable the Kubernetes API**
+### **Step 3: Enable the Kubernetes API**
 
 In your browser, after opening the provided URL, enable the Kubernetes API for your project.
 Note: You may see a prompt asking you to enable billing before you proceed , follow the prompt.
 
 This step is crucial as it allows us to use Kubernetes Engine services in the newly created project.
 
-## **Step 4: Create a GKE Cluster**
+### **Step 4: Create a GKE Cluster**
 
 Once the Kubernetes API is enabled, we can create a GKE cluster. The command below creates a cluster named `dot` in the `us-east1` region with one node of type `e2-standard-4`. We also enable network policy and disable automatic upgrades:
 
@@ -100,7 +100,7 @@ gcloud container clusters create  --project $PROJECT_ID \
     --no-enable-autoupgrade
 ```
 
-## **Step 5: Generate the kubeconfig File**
+### **Step 5: Generate the kubeconfig File**
 
 Finally, we generate the kubeconfig file, which allows us to interact with the Kubernetes cluster using `kubectl`. The following command configures the credentials for the cluster we just created:
 
@@ -113,7 +113,7 @@ By completing these steps, we've successfully set up a Google Cloud project, ena
 
 To ensure that Kubernetes stores its configuration in a specific file and to prepare for future use, follow these steps:
 
-## **Step 6: Set the KUBECONFIG Environment Variable**
+### **Step 6: Set the KUBECONFIG Environment Variable**
 
 First, we need to tell our cluster creation tool to use the `kubeconfig-dev.yaml` file for storing Kubernetes configuration. We do this by setting the `KUBECONFIG` environment variable:
 
@@ -123,7 +123,7 @@ export KUBECONFIG=$PWD/kubeconfig-dev.yaml
 
 This command ensures that Kubernetes stores its configuration in the `kubeconfig-dev.yaml` file located in the current working directory. Since this file is already added to `.gitignore`, it won't be tracked by Git, keeping your configuration secure.
 
-## **Step 7: Create a Hidden .env File**
+### **Step 7: Create a Hidden .env File**
 
 Next, we'll create a hidden `.env` file where we can store important environment variables that we might need later. This file will hold a command to set a `KUBECONFIG_DEV` variable pointing to the path of our `kubeconfig-dev.yaml` file.
 
