@@ -139,8 +139,6 @@ By completing these steps, we have successfully directed Kubernetes to use a spe
 
 ## PART II: CLUSTER CONFIGURATIONS & SETUP
 
-### **Setting Up Your Kubernetes Environment**
-
 To get your Kubernetes environment ready, follow these detailed steps. We'll create a namespace, install essential tools, set up a reverse proxy, and configure DNS for your applications.
 
 ### **Step 1: Create a Development Namespace**
