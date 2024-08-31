@@ -1,6 +1,6 @@
 # GKE Cluster Setup Using gcloud CLI
 
-## PART 1: CREATE PROJECT & CLUSTER
+## PART I: CREATE PROJECT & CLUSTER
 
 Here's a step-by-step guide on how to create a Google Cloud project, enable the Kubernetes API, and create a GKE cluster:
 
@@ -28,7 +28,13 @@ Before we proceed with configuring Kubernetes and setting up the GKE cluster, en
 
 6. **Access to a Google Cloud Project**: You should have access to a Google Cloud project where you have permissions to create and manage resources, including enabling APIs and creating clusters.
 
-7. **`yq` Installed**: Make sure `yq` is installed, as it’s used to modify YAML files. You can install it by following the [yq installation guide](https://github.com/mikefarah/yq).
+7. **Install Required Command-Line Tools**: If you haven't already installed them, you may need the following tools:
+
+- **[yq](https://github.com/mikefarah/yq)**: A lightweight command-line YAML processor - [yq installation guide](https://github.com/mikefarah/yq).
+- **jq**: A lightweight command-line JSON processor - [jq installation guide]().
+- **Helm**: A package manager for Kubernetes applications - [Helm installation guide]().
+
+You can install these tools according to your operating system's instructions
 
 8. **Text Editor**: Have a text editor ready for editing configuration files if needed. Examples include VSCode, Sublime Text, or any command-line editor like Vim or Nano.
 
@@ -94,6 +100,7 @@ gcloud container clusters create  --project $PROJECT_ID \
     --disk-size "20" \
     --no-enable-autoupgrade
 ```
+
 ## **Step 5: Generate the kubeconfig File**
 
 Finally, we generate the kubeconfig file, which allows us to interact with the Kubernetes cluster using `kubectl`. The following command configures the credentials for the cluster we just created:
@@ -131,7 +138,7 @@ This command appends the line `export KUBECONFIG_DEV=$PWD/kubeconfig-dev.yaml` t
 
 By completing these steps, we have successfully directed Kubernetes to use a specific configuration file and stored the path in a hidden environment file for future reference.
 
-## PART 2: CLUSTER CONFIGURATIONS & SETUP
+## PART II: CLUSTER CONFIGURATIONS & SETUP
 
 ### **Setting Up Your Kubernetes Environment**
 
@@ -144,16 +151,6 @@ First, we'll create a namespace called `dev` in your Kubernetes cluster. This na
 ```bash
 kubectl create namespace dev
 ```
-
-### **Step 2: Install Required Command-Line Tools**
-
-If you haven't already installed them, you may need the following tools:
-
-- **yq**: A lightweight command-line YAML processor.
-- **jq**: A lightweight command-line JSON processor.
-- **Helm**: A package manager for Kubernetes applications.
-
-You can install these tools according to your operating system's instructions.
 
 ### **Step 3: Install Traefik**
 
