@@ -105,7 +105,7 @@ gcloud container clusters juju create  --project $PROJECT_ID \
 Finally, we generate the kubeconfig file, which allows us to interact with the Kubernetes cluster using `kubectl`. The following command configures the credentials for the cluster we just created:
 
 ```bash
-gcloud container clusters get-credentials dot \
+gcloud container clusters get-credentials juju \
     --project $PROJECT_ID --region us-east1
 ```
 
@@ -141,7 +141,7 @@ By completing these steps, we have successfully directed Kubernetes to use a spe
 
 To get your Kubernetes environment ready, follow these detailed steps. We'll create a namespace, install essential tools, set up a reverse proxy, and configure DNS for your applications.
 
-### **Step 1: Create a Development Namespace**
+### **Step 8: Create a Development Namespace**
 
 First, we'll create a namespace called `dev` in your Kubernetes cluster. This namespace will help us organize and manage resources separately from other environments:
 
@@ -149,7 +149,7 @@ First, we'll create a namespace called `dev` in your Kubernetes cluster. This na
 kubectl create namespace dev
 ```
 
-### **Step 3: Install Traefik**
+### **Step 9: Install Traefik**
 
 Next, we'll install Traefik, a reverse proxy server and load balancer that manages incoming traffic to your Kubernetes cluster. We'll use Helm to install Traefik:
 
@@ -159,7 +159,7 @@ helm upgrade --install traefik traefik \
     --namespace traefik --create-namespace --wait
 ```
 
-### **Step 4: Retrieve Your Cluster's IP Address**
+### **Step 10: Retrieve Your Cluster's IP Address**
 
 Depending on your cloud provider, the method for retrieving your cluster's IP address will vary. If you're using Google Kubernetes Engine (GKE), use the following command:
 
@@ -181,7 +181,7 @@ If the output is empty or contains more than one IP, wait a bit longer and repea
 export INGRESS_HOST=[selected_ip]
 ```
 
-### **Step 5: Configure Your Domain or Use nip.io**
+### **Step 11: Configure Your Domain or Use nip.io**
 
 Use the IP address from the previous step to configure your DNS domain. Go to your domain registrar and create an 'A' record with the value set to this IP address.
 
@@ -197,7 +197,7 @@ export DOMAIN=[...]
 alias curl="curl --insecure"
 ```
 
-### **Step 6: Configure DNS for Subdomains**
+### **Step 12: Configure DNS for Subdomains**
 
 If you're using a real domain, you'll need to configure the following subdomains by creating 'A' records at your registrar:
 
@@ -207,7 +207,7 @@ If you're using a real domain, you'll need to configure the following subdomains
 
 Each subdomain should point to the same IP address as your main domain. If you're using `nip.io`, skip this step.
 
-### **Step 7: Deploy and Configure cert-manager**
+### **Step 13: Deploy and Configure cert-manager**
 
 To automate the process of issuing and renewing TLS certificates, we'll deploy cert-manager. Skip this step if you're using `nip.io`.
 
@@ -231,7 +231,7 @@ helm upgrade --install cert-manager jetstack/cert-manager \
     --set installCRDs=true --wait
 ```
 
-### **Step 8: Create a cert-manager ClusterIssuer**
+### **Step 14: Create a cert-manager ClusterIssuer**
 
 Finally, we'll create a `ClusterIssuer` resource that can issue TLS certificates. Replace `[...]` with your email address:
 
