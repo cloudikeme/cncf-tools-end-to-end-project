@@ -174,17 +174,19 @@ This command retrieves the IP address for accessing applications running in your
 echo $INGRESS_HOST
 ```
 
-If the output is empty or contains more than one IP, wait a bit longer and repeat the `export` command. If there are multiple IPs, choose one and set it using:
+If the output is empty or contains more than one IP, wait a bit longer and repeat the `export` command. If there are multiple IPs, choose one, copy it and set it:
 
 ```bash
 export INGRESS_HOST=[selected_ip]
 ```
 
+Replace [selected-ip] with the copied IP.
+
 ### **Step 11: Configure Your Domain or Use nip.io**
 
 Use the IP address from the previous step to configure your DNS domain. Go to your domain registrar and create an 'A' record with the value set to this IP address.
 
-If you don't have a domain, you can use `nip.io` for a temporary solution. Replace `[...]` with your chosen domain name or `$INGRESS_HOST.nip.io`:
+For this demo project, we'll be using `nip.io` for a free, fast, temporary solution. Replace `[...]` with your chosen domain name or `$INGRESS_HOST.nip.io`:
 
 ```bash
 export DOMAIN=[...]
@@ -200,9 +202,9 @@ alias curl="curl --insecure"
 
 If you're using a real domain, you'll need to configure the following subdomains by creating 'A' records at your registrar:
 
-- **harbor**
-- **notary**
-- **cncf-demo-dev**
+harbor
+notary
+cncf-demo-dev
 
 Each subdomain should point to the same IP address as your main domain. If you're using `nip.io`, skip this step.
 
