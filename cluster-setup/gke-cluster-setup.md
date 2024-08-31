@@ -31,9 +31,8 @@ Before we proceed with configuring Kubernetes and setting up the GKE cluster, en
 7. **Install Required Command-Line Tools**: If you haven't already installed them, you may need the following tools:
 
 - **[yq](https://github.com/mikefarah/yq)**: A lightweight command-line YAML processor - [yq installation guide](https://github.com/mikefarah/yq).
-- **[jq]()**: A lightweight command-line JSON processor - [jq installation guide]().
-- **[Helm]()**: A package manager for Kubernetes applications - [Helm installation guide]().
-
+- **[jq](https://stedolan.github.io/jq/download)**: A lightweight command-line JSON processor - [jq installation guide](https://stedolan.github.io/jq/download).
+- **[Helm](https://helm.sh/docs/intro/install/)**: A package manager for Kubernetes applications - [Helm installation guide](https://helm.sh/docs/intro/install/).
 You can install these tools according to your operating system's instructions.
 
 8. **Text Editor**: Have a text editor ready for editing configuration files if needed. Examples include VSCode, Sublime Text, or any command-line editor like Vim or Nano.
@@ -92,7 +91,7 @@ This step is crucial as it allows us to use Kubernetes Engine services in the ne
 Once the Kubernetes API is enabled, we can create a GKE cluster. The command below creates a cluster named `juju` in the `us-east1` region with one node of type `e2-small`, disk-type and disk size. We also enable network policy and disable automatic upgrades:
 
 ```bash
-gcloud container clusters juju create  --project $PROJECT_ID \
+gcloud container clusters create juju  --project $PROJECT_ID \
     --zone us-east1 --machine-type e2-small \
     --num-nodes 1 --enable-network-policy \
     --disk-type "pd-balanced" \
