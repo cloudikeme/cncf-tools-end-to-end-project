@@ -1,1 +1,4 @@
-# End-to-End Project Using CNCF Projects
+# End-to-End Hands-On Project Using CNCF Projects
+
+Inspired by the amazing Viktor Farcic
+
