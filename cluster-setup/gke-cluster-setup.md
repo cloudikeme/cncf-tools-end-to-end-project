@@ -1,6 +1,6 @@
 # GKE Cluster Setup Using gcloud CLI
 
-## Introduction
+## PART 1: Create Cluster
 
 Here's a step-by-step guide on how to create a Google Cloud project, enable the Kubernetes API, and create a GKE cluster:
 
@@ -130,3 +130,132 @@ echo "export KUBECONFIG_DEV=$PWD/kubeconfig-dev.yaml" >> .env
 This command appends the line `export KUBECONFIG_DEV=$PWD/kubeconfig-dev.yaml` to the `.env` file. This setup is useful because, depending on your project’s requirements, you might need to reference this configuration file later on.
 
 By completing these steps, we have successfully directed Kubernetes to use a specific configuration file and stored the path in a hidden environment file for future reference.
+
+## PART 2: CLUSTER CONFIGURATIONS & SETUP
+
+### **Setting Up Your Kubernetes Environment**
+
+To get your Kubernetes environment ready, follow these detailed steps. We'll create a namespace, install essential tools, set up a reverse proxy, and configure DNS for your applications.
+
+### **Step 1: Create a Development Namespace**
+
+First, we'll create a namespace called `dev` in your Kubernetes cluster. This namespace will help us organize and manage resources separately from other environments:
+
+```bash
+kubectl create namespace dev
+```
+
+### **Step 2: Install Required Command-Line Tools**
+
+If you haven't already installed them, you may need the following tools:
+
+- **yq**: A lightweight command-line YAML processor.
+- **jq**: A lightweight command-line JSON processor.
+- **Helm**: A package manager for Kubernetes applications.
+
+You can install these tools according to your operating system's instructions.
+
+### **Step 3: Install Traefik**
+
+Next, we'll install Traefik, a reverse proxy server and load balancer that manages incoming traffic to your Kubernetes cluster. We'll use Helm to install Traefik:
+
+```bash
+helm upgrade --install traefik traefik \
+    --repo https://helm.traefik.io/traefik \
+    --namespace traefik --create-namespace --wait
+```
+
+### **Step 4: Retrieve Your Cluster's IP Address**
+
+Depending on your cloud provider, the method for retrieving your cluster's IP address will vary. If you're using Google Kubernetes Engine (GKE), use the following command:
+
+```bash
+export INGRESS_HOST=$(kubectl --namespace traefik \
+    get service traefik \
+    --output jsonpath="{.status.loadBalancer.ingress[0].ip}")
+```
+
+This command retrieves the IP address for accessing applications running in your cluster. To view the IP address, simply run:
+
+```bash
+echo $INGRESS_HOST
+```
+
+If the output is empty or contains more than one IP, wait a bit longer and repeat the `export` command. If there are multiple IPs, choose one and set it using:
+
+```bash
+export INGRESS_HOST=[selected_ip]
+```
+
+### **Step 5: Configure Your Domain or Use nip.io**
+
+Use the IP address from the previous step to configure your DNS domain. Go to your domain registrar and create an 'A' record with the value set to this IP address.
+
+If you don't have a domain, you can use `nip.io` for a temporary solution. Replace `[...]` with your chosen domain name or `$INGRESS_HOST.nip.io`:
+
+```bash
+export DOMAIN=[...]
+```
+
+**Note**: If using `nip.io`, you'll need to allow insecure connections when opening applications in a browser or executing `curl` commands. For convenience, you can create an alias for `curl` to automatically add the `--insecure` flag:
+
+```bash
+alias curl="curl --insecure"
+```
+
+### **Step 6: Configure DNS for Subdomains**
+
+If you're using a real domain, you'll need to configure the following subdomains by creating 'A' records at your registrar:
+
+- **harbor**
+- **notary**
+- **cncf-demo-dev**
+
+Each subdomain should point to the same IP address as your main domain. If you're using `nip.io`, skip this step.
+
+### **Step 7: Deploy and Configure cert-manager**
+
+To automate the process of issuing and renewing TLS certificates, we'll deploy cert-manager. Skip this step if you're using `nip.io`.
+
+Add the `jetstack` Helm repository:
+
+```bash
+helm repo add jetstack https://charts.jetstack.io
+```
+
+Update your Helm repositories:
+
+```bash
+helm repo update
+```
+
+Install cert-manager:
+
+```bash
+helm upgrade --install cert-manager jetstack/cert-manager \
+    --namespace cert-manager --create-namespace \
+    --set installCRDs=true --wait
+```
+
+### **Step 8: Create a cert-manager ClusterIssuer**
+
+Finally, we'll create a `ClusterIssuer` resource that can issue TLS certificates. Replace `[...]` with your email address:
+
+```bash
+export EMAIL=[...]
+```
+
+Update the `issuer.yaml` file with your email:
+
+```bash
+yq --inplace ".spec.acme.email = \"$EMAIL\"" \
+    cert-manager/issuer.yaml
+```
+
+Apply the `ClusterIssuer` configuration:
+
+```bash
+kubectl apply --filename cert-manager/issuer.yaml
+```
+
+By following these steps, you've successfully set up a Kubernetes development environment with Traefik, configured DNS settings, and deployed cert-manager for automated certificate management.
