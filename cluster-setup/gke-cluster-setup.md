@@ -89,10 +89,10 @@ This step is crucial as it allows us to use Kubernetes Engine services in the ne
 
 ### **Step 4: Create a GKE Cluster**
 
-Once the Kubernetes API is enabled, we can create a GKE cluster. The command below creates a cluster named `dot` in the `us-east1` region with one node of type `e2-standard-4`. We also enable network policy and disable automatic upgrades:
+Once the Kubernetes API is enabled, we can create a GKE cluster. The command below creates a cluster named `juju` in the `us-east1` region with one node of type `e2-small`, disk-type and disk size. We also enable network policy and disable automatic upgrades:
 
 ```bash
-gcloud container clusters create  --project $PROJECT_ID \
+gcloud container clusters juju create  --project $PROJECT_ID \
     --zone us-east1 --machine-type e2-small \
     --num-nodes 1 --enable-network-policy \
     --disk-type "pd-balanced" \
