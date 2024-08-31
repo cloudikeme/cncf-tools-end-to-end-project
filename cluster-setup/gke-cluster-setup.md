@@ -31,8 +31,8 @@ Before we proceed with configuring Kubernetes and setting up the GKE cluster, en
 7. **Install Required Command-Line Tools**: If you haven't already installed them, you may need the following tools:
 
 - **[yq](https://github.com/mikefarah/yq)**: A lightweight command-line YAML processor - [yq installation guide](https://github.com/mikefarah/yq).
-- **jq**: A lightweight command-line JSON processor - [jq installation guide]().
-- **Helm**: A package manager for Kubernetes applications - [Helm installation guide]().
+- **[jq]()**: A lightweight command-line JSON processor - [jq installation guide]().
+- **[Helm]()**: A package manager for Kubernetes applications - [Helm installation guide]().
 
 You can install these tools according to your operating system's instructions.
 
