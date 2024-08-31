@@ -72,7 +72,7 @@ Now, we proceed to create the project in Google Cloud:
 gcloud projects create $PROJECT_ID
 ```
 
-After the project is created, run the following command to get a URL to enable the Kubernetes API. 
+After the project is created, run the following command to get a URL to enable the Kubernetes API.
 
 ```bash
 echo "https://console.cloud.google.com/marketplace/product/google/container.googleapis.com?project=$PROJECT_ID"
@@ -84,7 +84,6 @@ Copy the URL and open it in your web browser. If you are prompted to enable bill
 
 In your browser, after opening the provided URL, enable the Kubernetes API for your project.
 Note: You may see a prompt asking you to enable billing before you proceed , follow the prompt.
-
 
 This step is crucial as it allows us to use Kubernetes Engine services in the newly created project.
 
