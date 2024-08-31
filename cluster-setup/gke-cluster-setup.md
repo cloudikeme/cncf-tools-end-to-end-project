@@ -80,11 +80,12 @@ Once the Kubernetes API is enabled, we can create a GKE cluster. The command bel
 
 ```bash
 gcloud container clusters create dot --project $PROJECT_ID \
-    --region us-east1 --machine-type e2-standard-4 \
+    --zone us-east1 --machine-type e2-small \
     --num-nodes 1 --enable-network-policy \
+    --disk-type "pd-balanced" \
+    --disk-size "20" \
     --no-enable-autoupgrade
 ```
-
 ### **Step 5: Generate the kubeconfig File**
 
 Finally, we generate the kubeconfig file, which allows us to interact with the Kubernetes cluster using `kubectl`. The following command configures the credentials for the cluster we just created:
@@ -95,3 +96,29 @@ gcloud container clusters get-credentials dot \
 ```
 
 By completing these steps, we've successfully set up a Google Cloud project, enabled the Kubernetes API, created a GKE cluster, and configured our local environment to manage the cluster.
+
+To ensure that Kubernetes stores its configuration in a specific file and to prepare for future use, follow these steps:
+
+### **Step 6: Set the KUBECONFIG Environment Variable**
+
+First, we need to tell our cluster creation tool to use the `kubeconfig-dev.yaml` file for storing Kubernetes configuration. We do this by setting the `KUBECONFIG` environment variable:
+
+```bash
+export KUBECONFIG=$PWD/kubeconfig-dev.yaml
+```
+
+This command ensures that Kubernetes stores its configuration in the `kubeconfig-dev.yaml` file located in the current working directory. Since this file is already added to `.gitignore`, it won't be tracked by Git, keeping your configuration secure.
+
+### **Step 7: Create a Hidden .env File**
+
+Next, we'll create a hidden `.env` file where we can store important environment variables that we might need later. This file will hold a command to set a `KUBECONFIG_DEV` variable pointing to the path of our `kubeconfig-dev.yaml` file.
+
+To add this command to the `.env` file, run the following command:
+
+```bash
+echo "export KUBECONFIG_DEV=$PWD/kubeconfig-dev.yaml" >> .env
+```
+
+This command appends the line `export KUBECONFIG_DEV=$PWD/kubeconfig-dev.yaml` to the `.env` file. This setup is useful because, depending on your project’s requirements, you might need to reference this configuration file later on.
+
+By completing these steps, we have successfully directed Kubernetes to use a specific configuration file and stored the path in a hidden environment file for future reference.
