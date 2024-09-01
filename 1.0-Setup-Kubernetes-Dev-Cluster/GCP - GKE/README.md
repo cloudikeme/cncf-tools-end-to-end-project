@@ -257,5 +257,5 @@ Apply the `ClusterIssuer` configuration:
 kubectl apply --filename cert-manager/issuer.yaml
 ```
 
-By following these steps, you've successfully set up a Kubernetes development environment with Traefik, configured DNS settings, and deployed cert-manager for automated certificate management.
+By following these steps, we've successfully set up a Kubernetes development environment with Traefik, configured DNS settings, and deployed cert-manager for automated certificate management.
 
