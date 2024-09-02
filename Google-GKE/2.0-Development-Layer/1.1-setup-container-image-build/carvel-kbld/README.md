@@ -1,4 +1,4 @@
-### **Building Container Images with kbld in Dev Environments**
+# **Building Container Images with kbld in Dev Environments**
 
 In development environments, kbld proves to be an invaluable command-line tool that automates the process of building container images, pushing them, and updating deployment configurations. Let’s walk through how kbld accomplishes this in four steps:
 
@@ -16,7 +16,7 @@ kbld automatically assigns each image a unique tag during the build process. Thi
 
 **Fun Fact:** kbld can handle multiple changing applications simultaneously, making it particularly effective in dynamic development environments where several components may be under active development.
 
-### **Setup**
+### **Prerequisites**
 
 Before we begin, we need to ensure a few prerequisites are met:
 
@@ -31,7 +31,7 @@ In our deployment definition, the container image is referenced as 'cncf-demo'. 
 To inspect this configuration, we can review the deployment file:
 
 ```bash
-cat kbld/deployment.yaml
+cat kbld/ .yaml
 ```
 
 Next, we build the image from the referenced source code and record the resulting image reference in a new file called `deployment-kbld.yaml`:
