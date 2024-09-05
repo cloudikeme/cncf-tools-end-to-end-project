@@ -107,8 +107,6 @@ Finally, we generate the kubeconfig file, which allows us to connect to and inte
 gcloud container clusters get-credentials juju --project $PROJECT_ID --region us-east1
 ```
 
-gcloud container clusters get-credentials juju --region us-east1 --project ikeme-20240905111653
-
 By completing these steps, we've successfully set up a Google Cloud project, enabled the Kubernetes API, created a GKE cluster, and configured our local environment to manage the cluster.
 
 To ensure that Kubernetes stores its configuration in a specific file and to prepare for future use, follow these steps:
