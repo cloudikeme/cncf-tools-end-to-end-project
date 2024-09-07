@@ -40,6 +40,8 @@ Next, we build the image from the referenced source code and record the resultin
 kbld --file kbld/deployment.yaml | tee kbld/deployment-kbld.yaml
 ```
 
+2.0-Development-Layer/1.1-setup-container-image-build/carvel-kbld/deployment.yaml
+
 At this point, the deployment definition now points to our newly built container image. To extract the image tag from the output, we follow these steps:
 
 1. Identify the tag from the kbld output (everything after 'kbld:').
