@@ -17,4 +17,4 @@ production:
 hyperscaler: aws
 secrets: eso
 google:
-  projectId: ikeme-20240905181716
+  projectId: dot-20240907162848
