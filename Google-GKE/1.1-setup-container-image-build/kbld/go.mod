@@ -1,6 +1,6 @@
 module devopstoolkitseries/silly-app
 
-go 1.19
+go 1.20.6
 
 require (
 	github.com/gin-gonic/gin v1.8.2

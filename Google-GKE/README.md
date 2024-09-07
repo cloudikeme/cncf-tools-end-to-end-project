@@ -1,8 +1,5 @@
 # GKE Cluster Setup Using gcloud CLI
 
-
-
-
 ## PART I: CREATE PROJECT & CLUSTER
 
 Here's a step-by-step guide on how to create a Google Cloud project, enable the Kubernetes API, and create a GKE cluster:
@@ -50,11 +47,9 @@ First, we need to enable the Google Kubernetes Engine (GKE) gcloud auth plugin b
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 ```
 
-### **Step 2: Create a Google Cloud Project**
+### **Step 2: Create a Google Cloud Project
 
-First, cd into the `cluster-setup` directory
-
-Next, let's create a new project. We will generate a unique project ID using my name , the current date, and time to ensure it’s globally unique:
+First, we start by creating a new Google Cloud Project. We will generate a unique project ID using my name , the current date, and time to ensure it’s globally unique:
 
 ```bash
 export PROJECT_ID=ikeme-$(date +%Y%m%d%H%M%S)
