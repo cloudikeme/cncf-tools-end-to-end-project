@@ -4,7 +4,7 @@ ingress:
   host: 35.196.249.89.nip.io
   classname: contour
 image: index.docker.io/vfarcic/cncf-demo
-tag: v0.0.1
+tag: cncf-demo-sha256-3afb49e71d42b88b34045bb1a898704fdf207bda4a3a5dee3f2012a12cd84c43
 templates: helm
 crossplane:
   destination: google
@@ -17,4 +17,4 @@ production:
 hyperscaler: aws
 secrets: eso
 google:
-  projectId: ikeme-20240907201459
+  projectId: ""
