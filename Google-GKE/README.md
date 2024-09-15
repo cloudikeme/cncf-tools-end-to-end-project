@@ -97,6 +97,21 @@ gcloud container clusters create juju  --project $PROJECT_ID \
     --no-enable-autoupgrade
 ```
 
+gcloud projects list && \
+PROJECT_ID=kfproject-435323 && \
+gcloud config set project $PROJECT_ID && \
+gcloud container clusters create kubeflow-codelab \
+--disk-size "120" \
+--num-nodes 1 --enable-network-policy \
+--zone us-east1 --machine-type e2-standard-4
+
+
+
+
+
+
+
+
 ### **Step 5: Generate the kubeconfig File and Connect to the Cluster**
 
 Finally, we generate the kubeconfig file, which allows us to connect to and interact with the Kubernetes cluster using `kubectl`. The following command configures the credentials for the cluster we just created:
